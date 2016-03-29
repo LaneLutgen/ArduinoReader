@@ -1,0 +1,8 @@
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\bin\Debug\ArduinoDataMonitoring.exe.config
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\bin\Debug\ArduinoDataMonitoring.exe
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\bin\Debug\ArduinoDataMonitoring.pdb
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.csprojResolveAssemblyReference.cache
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.Properties.Resources.resources
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.csproj.GenerateResource.Cache
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.exe
+c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.pdb
