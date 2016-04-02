@@ -6,3 +6,13 @@ c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\Arduin
 c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.csproj.GenerateResource.Cache
 c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.exe
 c:\users\lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.pdb
+C:\Users\Lane\documents\visual studio 2015\Projects\ArduinoDataMonitoring\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.FormMain.resources
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\bin\Debug\ArduinoDataMonitoring.exe.config
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.exe
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.pdb
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\bin\Debug\ArduinoDataMonitoring.exe
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\bin\Debug\ArduinoDataMonitoring.pdb
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.csprojResolveAssemblyReference.cache
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.FormMain.resources
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.Properties.Resources.resources
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\obj\Debug\ArduinoDataMonitoring.csproj.GenerateResource.Cache
