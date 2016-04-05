@@ -1,0 +1,1 @@
+C:\Users\Lane\Documents\GitHub\ArduinoReader\ArduinoDataMonitoringC#\ArduinoDataMonitoring\bin\Release\ArduinoDataMonitoring.exe.config

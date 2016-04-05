@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace ArduinoDataMonitoring
 {
@@ -12,16 +13,22 @@ namespace ArduinoDataMonitoring
     {
         private SerialPort mySerialPort = new SerialPort();
         private string priorValue;
+        private FormMain form;
 
         public SerialManager()
         {
             mySerialPort.BaudRate = 9600;
-            mySerialPort.PortName = "COM3"; //may have to change this depending on the computer, could be an input
-            mySerialPort.Open();
+            mySerialPort.PortName = "COM3"; //default port
+        }
+
+        public SerialManager(FormMain form): base()
+        {
+            this.form = form;
         }
 
         public void ChangePort(string port)
         {
+            mySerialPort.Close();
             mySerialPort.PortName = port;
         }
 
@@ -29,7 +36,14 @@ namespace ArduinoDataMonitoring
         {
             if (!mySerialPort.IsOpen)
             {
-                mySerialPort.Open();
+                try
+                {
+                    mySerialPort.Open();
+                }
+                catch(System.IO.IOException e)
+                {
+                    form.ShowMessage("Could not open port, please make sure the correct port is selected and that the Arduino is plugged in.");
+                }  
             }
         }
 

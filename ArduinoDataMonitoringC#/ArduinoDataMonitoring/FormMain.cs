@@ -14,16 +14,18 @@ namespace ArduinoDataMonitoring
     public partial class FormMain : Form
     {
         private SerialManager serialManager;
+        private CSVExporter csvExporter;
 
         public FormMain()
         {
             InitializeComponent();
-            serialManager = new SerialManager();
+            serialManager = new SerialManager(this);
+            checkBox3.Checked = true;
         }
 
         private void Start_Click(object sender, EventArgs e)
         {
-
+            csvExporter = new CSVExporter();
         }
 
         private void Stop_Click(object sender, EventArgs e)
@@ -105,6 +107,11 @@ namespace ArduinoDataMonitoring
                 checkBox1.Checked = false;
                 serialManager.ChangePort("COM4");
             }
+        }
+
+        public void ShowMessage(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }
