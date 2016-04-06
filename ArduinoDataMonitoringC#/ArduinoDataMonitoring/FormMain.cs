@@ -15,22 +15,29 @@ namespace ArduinoDataMonitoring
     {
         private SerialManager serialManager;
         private CSVExporter csvExporter;
+        private volatile bool logging;
+        private TimeSpan timeSpan;
+        private DateTime start;
+        private DateTime finish;
 
         public FormMain()
         {
             InitializeComponent();
             serialManager = new SerialManager(this);
+            csvExporter = new CSVExporter();
             checkBox3.Checked = true;
         }
 
         private void Start_Click(object sender, EventArgs e)
         {
-            csvExporter = new CSVExporter();
+            logging = true;
+            start = DateTime.Now;
         }
 
         private void Stop_Click(object sender, EventArgs e)
         {
-
+            logging = false;
+            csvExporter.CreateCsvFile();
         }
 
         private void Begin_Click(object sender, EventArgs e)
@@ -56,8 +63,16 @@ namespace ArduinoDataMonitoring
                 Invoke(method);
                 return;
             }
-            Console.WriteLine(serialManager.ReadData());
-            textBox1.Text = serialManager.ReadData();
+            string data = serialManager.ReadData();
+            textBox1.Text = data;
+
+            if(logging)
+            {
+                csvExporter.AddData(data);
+                finish = DateTime.Now;
+                timeSpan = finish - start;
+                csvExporter.AddTimestamp(timeSpan);
+            }
         }
 
         private void Pause_Click(object sender, EventArgs e)
