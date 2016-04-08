@@ -5,17 +5,20 @@ void setup() {
 
 void loop() {
   // send the value of analog input 0:
-  int voltage_ticks = analogRead(A0);
-  
-  // stabalize the ADC
+  int pressure_ticks = analogRead(A0);
+  delay(2);  // stabalize the ADC
+  int salinity_ticks = analogRead(A1);
   delay(2);
 
   //get actual voltage value
-  float analog_voltage = ticks_to_volts(voltage_ticks);
+  float pressure_voltage = ticks_to_volts(pressure_ticks);
+  float salinity_voltage = ticks_to_volts(salinity_ticks);
 
   //print out voltage value to console
-  Serial.print(analog_voltage);
-  Serial.println(" V");
+  Serial.print(pressure_voltage);
+  Serial.println("p");
+  Serial.print(salinity_voltage);
+  Serial.println("s");
 }
 
 float ticks_to_volts(int ticks) {

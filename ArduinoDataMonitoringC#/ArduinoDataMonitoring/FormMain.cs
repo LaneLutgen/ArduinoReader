@@ -57,22 +57,39 @@ namespace ArduinoDataMonitoring
 
         private void ReadData()
         {
-            if (InvokeRequired)
+            try
             {
-                MethodInvoker method = new MethodInvoker(ReadData);
-                Invoke(method);
-                return;
-            }
-            string data = serialManager.ReadData();
-            textBox1.Text = data;
+                if (InvokeRequired)
+                {
+                    MethodInvoker method = new MethodInvoker(ReadData);
+                    Invoke(method);
+                    return;
+                }
+                string data = serialManager.ReadData();
+                if (data.Contains("p"))
+                {
+                    data = data.Substring(0, data.Length - 2);
+                    textBox1.Text = data;
+                }
+                else if (data.Contains("s"))
+                {
+                    data = data.Substring(0, data.Length - 2);
+                    textBox2.Text = data;
+                }
 
-            if(logging)
-            {
-                csvExporter.AddData(data);
-                finish = DateTime.Now;
-                timeSpan = finish - start;
-                csvExporter.AddTimestamp(timeSpan);
+                if (logging)
+                {
+                    csvExporter.AddData(data);
+                    finish = DateTime.Now;
+                    timeSpan = finish - start;
+                    csvExporter.AddTimestamp(timeSpan);
+                }
             }
+            catch(ObjectDisposedException ex)
+            {
+                Console.WriteLine("Form was closed prematurely");
+                Application.Exit();
+            }  
         }
 
         private void Pause_Click(object sender, EventArgs e)
