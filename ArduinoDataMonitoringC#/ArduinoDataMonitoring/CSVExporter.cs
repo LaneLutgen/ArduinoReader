@@ -10,14 +10,16 @@ namespace ArduinoDataMonitoring
     class CSVExporter
     {
         private int filecount;
-        private List<string> dataList;
+        private List<string> pressureData;
+        private List<string> salinityData;
         private List<TimeSpan> times;
         private readonly string directoryPath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DeionizerLogFiles\\";
 
         public CSVExporter()
         {
             filecount = 0;
-            dataList = new List<string>();
+            pressureData = new List<string>();
+            salinityData = new List<string>();
             times = new List<TimeSpan>();
         }
 
@@ -29,19 +31,36 @@ namespace ArduinoDataMonitoring
             File.Create(filePath).Close();
 
             string delimiter = ",";
-            string[][] output = new string[][]{
-                dataList.ToArray()
-            };
-            int length = output.GetLength(0);
+
             StringBuilder sb = new StringBuilder();
-            for (int index = 0; index < length; index++)
-                sb.AppendLine(string.Join(delimiter, output[index]));
+            sb.AppendLine(string.Join(delimiter, "Time", "Pressure (psi)", "Salinity (%)"));
+
+            int index = 0;
+            foreach(TimeSpan t in times)
+            {
+                try
+                {
+                    sb.AppendLine(string.Join(delimiter, times.ElementAt(index) ,pressureData.ElementAt(index), salinityData.ElementAt(index)));
+                }
+                catch(ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine("End of list");
+                }
+                ++index;
+            }     
             File.AppendAllText(filePath, sb.ToString());
         }
 
-        public void AddData(string data)
+        public void AddData(string data, bool isPressure)
         {
-            dataList.Add(data);
+            if(isPressure)
+            {
+                pressureData.Add(data);
+            }
+            else
+            {
+                salinityData.Add(data);
+            }
         }
 
         public void AddTimestamp(TimeSpan currentTime)
@@ -51,7 +70,7 @@ namespace ArduinoDataMonitoring
 
         public void ClearData()
         {
-            dataList.Clear();
+            pressureData.Clear();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace ArduinoDataMonitoring
         private TimeSpan timeSpan;
         private DateTime start;
         private DateTime finish;
+        private volatile bool isPressure;
 
         public FormMain()
         {
@@ -27,23 +28,28 @@ namespace ArduinoDataMonitoring
             serialManager = new SerialManager(this);
             csvExporter = new CSVExporter();
             checkBox3.Checked = true;
+            label6.Visible = false;
+            label7.Visible = false;
         }
 
         private void Start_Click(object sender, EventArgs e)
         {
             logging = true;
             start = DateTime.Now;
+            label7.Visible = true;
         }
 
         private void Stop_Click(object sender, EventArgs e)
         {
             logging = false;
+            label7.Visible = false;
             csvExporter.CreateCsvFile();
         }
 
         private void Begin_Click(object sender, EventArgs e)
         {
             serialManager.OpenPort();
+            label6.Visible = true;
             Thread t = new Thread(new ThreadStart(ReadDataAsync));
             t.Start();
         }
@@ -71,16 +77,18 @@ namespace ArduinoDataMonitoring
                 {
                     data = data.Substring(0, data.Length - 2);
                     textBox1.Text = data;
+                    isPressure = true;
                 }
                 else if (data.Contains("s"))
                 {
                     data = data.Substring(0, data.Length - 2);
                     textBox2.Text = data;
+                    isPressure = false;
                 }
 
                 if (logging)
                 {
-                    csvExporter.AddData(data);
+                    csvExporter.AddData(data, isPressure);
                     finish = DateTime.Now;
                     timeSpan = finish - start;
                     csvExporter.AddTimestamp(timeSpan);
@@ -96,6 +104,7 @@ namespace ArduinoDataMonitoring
         private void Pause_Click(object sender, EventArgs e)
         {
             serialManager.ClosePort();
+            label6.Visible = false;
         }
 
         private void COM1_CheckedChanged(object sender, EventArgs e)
