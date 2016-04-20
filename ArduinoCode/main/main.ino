@@ -1,4 +1,9 @@
+int probePin = 3;
+
 void setup() {
+  //setup salinity probe power supply
+  pinMode(probePin, OUTPUT);
+  
   // initialize the serial communication at 9600 baud:
   Serial.begin(9600);
 }
@@ -10,8 +15,11 @@ void loop() {
   int salinity_ticks = analogRead(A1);
   delay(2);
 
+  //setup PWM for the salinity probe
+  analogWrite(probePin, 127);
+
   //get actual voltage value
-  float pressure_voltage = ticks_to_volts(pressure_ticks);
+  float pressure_voltage = pressure_converter(pressure_ticks);
   float salinity_voltage = ticks_to_volts(salinity_ticks);
 
   //print out voltage value to console
@@ -23,6 +31,11 @@ void loop() {
 
 float ticks_to_volts(int ticks) {
     return ticks * (5.0 / 1023);
+}
+
+float pressure_converter(int ticks) {
+    int newticks = ticks - 39; //error correction
+    return newticks * (72.5/ 1023);
 }
 
 

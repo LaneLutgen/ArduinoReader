@@ -22,6 +22,8 @@ namespace ArduinoDataMonitoring
         private DateTime finish;
         private volatile bool isPressure;
 
+        private int salinityZeroValueCount = 0; // used to differentiate an actual 0 value from a digital low on the PWM
+
         public FormMain()
         {
             InitializeComponent();
@@ -64,6 +66,8 @@ namespace ArduinoDataMonitoring
 
         private void ReadData()
         {
+            bool isDigitalLow = false;
+
             try
             {
                 if (InvokeRequired)
@@ -81,17 +85,29 @@ namespace ArduinoDataMonitoring
                 }
                 else if (data.Contains("s"))
                 {
+                    
                     data = data.Substring(0, data.Length - 2);
-                    textBox2.Text = data;
+                    if(!data.Equals("0.00") || salinityZeroValueCount > 10)
+                    {
+                        textBox2.Text = data;
+                        isDigitalLow = true;
+                        salinityZeroValueCount = 0;
+                    }
+                    else
+                    {
+                        isDigitalLow = false;
+                        salinityZeroValueCount++;
+                    }
                     isPressure = false;
                 }
 
-                if (logging)
+                if (logging && !isDigitalLow)
                 {
                     csvExporter.AddData(data, isPressure);
                     finish = DateTime.Now;
                     timeSpan = finish - start;
                     csvExporter.AddTimestamp(timeSpan);
+                    
                 }
             }
             catch(ObjectDisposedException ex)
