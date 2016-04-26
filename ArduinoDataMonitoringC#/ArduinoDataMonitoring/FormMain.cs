@@ -85,19 +85,20 @@ namespace ArduinoDataMonitoring
                 }
                 else if (data.Contains("s"))
                 {
-                    
-                    data = data.Substring(0, data.Length - 2);
-                    if(!data.Equals("0.00") || salinityZeroValueCount > 20)
-                    {
-                        textBox2.Text = data;
-                        isDigitalLow = true;
-                        salinityZeroValueCount = 0;
-                    }
-                    else
-                    {
-                        isDigitalLow = false;
-                        salinityZeroValueCount++;
-                    }
+                    //Data needs to be overridden now that the salinity probe is read through a multimeter
+                    //data = data.Substring(0, data.Length - 2);
+                    data = textBox2.Text;
+                    //if(!data.Equals("0.00") || salinityZeroValueCount > 20)
+                    //{
+                    //    textBox2.Text = data;
+                    //    isDigitalLow = true;
+                    //    salinityZeroValueCount = 0;
+                    //}
+                    //else
+                    //{
+                    //    isDigitalLow = false;
+                    //    salinityZeroValueCount++;
+                    //}
                     isPressure = false;
                 }
 
@@ -170,6 +171,16 @@ namespace ArduinoDataMonitoring
         public void ShowMessage(string message)
         {
             MessageBox.Show(message);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string currentText = textBox2.Text;
+            double amps = Double.Parse(currentText);
+
+            int percentage = (int)(2.5027946838902 * amps - 14.215935908583);
+
+            textBox2.Text = percentage.ToString();
         }
     }
 }
