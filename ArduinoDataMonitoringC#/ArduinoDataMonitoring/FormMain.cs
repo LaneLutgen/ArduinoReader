@@ -87,7 +87,7 @@ namespace ArduinoDataMonitoring
                 {
                     
                     data = data.Substring(0, data.Length - 2);
-                    if(!data.Equals("0.00") || salinityZeroValueCount > 10)
+                    if(!data.Equals("0.00") || salinityZeroValueCount > 20)
                     {
                         textBox2.Text = data;
                         isDigitalLow = true;

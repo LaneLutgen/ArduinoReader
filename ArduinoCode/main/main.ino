@@ -16,7 +16,7 @@ void loop() {
   delay(2);
 
   //setup PWM for the salinity probe
-  analogWrite(probePin, 127);
+  analogWrite(probePin, 171);
 
   //get actual voltage value
   float pressure_voltage = pressure_converter(pressure_ticks);
