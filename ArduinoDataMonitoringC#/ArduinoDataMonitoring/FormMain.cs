@@ -176,9 +176,23 @@ namespace ArduinoDataMonitoring
         private void button5_Click(object sender, EventArgs e)
         {
             string currentText = textBox2.Text;
-            double amps = Double.Parse(currentText);
+            double amps;
+            try
+            {
+                amps = Double.Parse(currentText);
+            }
+            catch(FormatException ex)
+            {
+                amps = 0;
+                ShowMessage("Invalid input");
+            }
 
             int percentage = (int)(2.5027946838902 * amps - 14.215935908583);
+
+            if(percentage < 0)
+            {
+                percentage = 0;
+            }
 
             textBox2.Text = percentage.ToString();
         }
